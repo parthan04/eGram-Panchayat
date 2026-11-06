@@ -1,0 +1,22 @@
+# secrets
+.env
+*.env
+!.env.example
+
+# python
+env/
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+backend/media/
+
+# angular
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+
+# editor / OS
+.vscode/
+.DS_Store
+Thumbs.db

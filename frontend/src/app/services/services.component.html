@@ -1,0 +1,31 @@
+<!-- SERVICES SECTION -->
+
+<section class="services" id="service">
+    <div class="container">
+        <div class="text-center m-4">
+            <h3 class="text-primary fw-bold">Services</h3>
+            <p class="text-light fw-bold"><a routerLink="/" class="text-secondary text-decoration-none">Home /</a> <span class="text-secondary">Services</span></p>
+            <hr class="border-2 w-50 border-dark m-auto">
+        </div>
+        <div class="services-container">
+            <div class="services-left">
+                <h4 class="fw-bold text-secondary">Services We Offer</h4>
+                <p class="text-muted">E-Gram Panchayat Services is a digital platform designed to make local government services more accessible, convenient, and efficient for citizens. The system provides a centralized online platform where citizens can access various Gram Panchayat services without having to visit the Panchayat office for every requirement.</p>
+            </div>
+            <div class="m-4 service-card-container d-flex flex-wrap">
+
+                <div class="card service-item d-flex" *ngFor="let sA of services">
+                    <div class="icon flex-shrink-0 p-2 d-flex gap-3 align-items-center border-bottom">
+                        <div class="d-flex justify-content-center align-items-center rounded-circle p-2 bg-primary text-white fs-5" style="width: 50px; height: 50px;"> <i class="bi bi-award"></i> </div>
+                        <h4 class="fw-bold text-secondary">{{ sA.title }}</h4>
+                    </div>
+                    <div>
+                        <p>{{ sA.description }}</p>
+                        and so on... <a class="btn btn-primary text-white d-flex justify-content-center align-items-center" (click)="serviceAppl(sA.id)" style="cursor: pointer;"><span>Apply now</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,12 @@
+
+.nav-link{
+    color: white;
+}
+.img{
+    border-radius: 15px;
+}
+header{
+    background-color: #1a5993;
+    height: 55%;
+    border-bottom: 1.5px solid #7a8698;
+}

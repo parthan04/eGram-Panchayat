@@ -1,0 +1,38 @@
+<div class="text-end m-3">
+  <button class="btn btn-primary" (click)="downloadPDF()">
+    <i class="bi bi-download"></i> Download PDF
+  </button>
+</div>
+
+<div class="certificate-container mt-3" id="casteCertificate">
+
+        <div class="certificate-header">
+            Caste Certificate
+        </div>
+
+        <div class="certificate-body">
+            <p>This certifies that the following information is recorded in the official register:</p>
+
+            <h5>Persons Information</h5>
+            <table class="info-table">
+                <tr><td><strong>Name:</strong></td><td>{{certificate.username}}  {{certificate.last_name}}</td></tr>
+                <tr><td><strong>Date of Birth:</strong></td><td>{{certificate.dob}}</td></tr>
+                <tr><td><strong>Caste:</strong></td><td>{{certificate.caste}}</td></tr>
+                <tr><td><strong>Religion:</strong></td><td>{{certificate.religion}}</td></tr>
+                <tr><td><strong>Gender:</strong></td><td>{{certificate.gender}}</td></tr>
+            </table>
+
+            <h5>Parent Information</h5>
+            <table class="info-table">
+                <tr><td><strong>Parent Name:</strong></td><td>{{certificate.parent_name}}</td></tr>
+                <tr><td><strong>Address:</strong></td><td>{{certificate.address}}</td></tr>
+            </table>
+
+            <h5>Contact Information</h5>
+            <table class="info-table">
+                <tr><td><strong>Phone:</strong></td><td>{{certificate.phone}}</td></tr>
+                <tr><td><strong>Email:</strong></td><td>{{certificate.email}}</td></tr>
+            </table>
+
+        </div>
+    </div>

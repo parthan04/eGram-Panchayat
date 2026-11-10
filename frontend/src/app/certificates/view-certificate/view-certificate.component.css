@@ -1,0 +1,25 @@
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .app-table {
+    width: 100%;
+    min-width: 1480px;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .app-table th,
+  .app-table td {
+    border: 1px solid #e5e5e5;
+    padding: 8px 10px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .nowrap { white-space: nowrap; }
+
+  .wrap { overflow-wrap: break-word; }
+
+  .app-table tbody tr:nth-child(odd) { background: #f2f2f2; }

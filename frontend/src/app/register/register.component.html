@@ -1,0 +1,88 @@
+  <!-- Contact Section -->
+  <section id="contact" class="contact section dark-background">
+
+    <main class="main">
+
+        <!-- Page Title -->
+        <div class="page-title dark-background col-lg-13">
+          <div class="container text-center"style="margin-left: 10%;">
+            <h3 class="pt-3"> Register Form</h3>
+            <nav class="breadcrumbs">
+              <ol>
+                <li><a routerLink="/">Home</a> / register</li>
+              </ol>
+            </nav>
+          </div>
+        </div><!-- End Page Title -->
+<br>
+        <div class="container position-relative pb-5">
+        <div class="row gy-4">
+          
+        <div class="col-lg-4">
+          <!--image-->
+        </div>
+          
+        <div class="box shadow-lg col-lg-7 p-5">
+            <h3 style="margin-left: 36%;"> Create an Account</h3>
+         
+            <form #registerForm="ngForm" class="text-center p-4 " method="post" >
+              <div class="row gy-5">
+                      
+                <div class="d-flex flex-column col-md-5 me-2 input-box mb-2">
+                  <input type="text" name="username" class="" placeholder="Your Username" [(ngModel)]="user.username" required>
+                  <small class="text-info" *ngIf="hasError('username')">{{ getError('username') }}</small>
+                </div>
+
+                <div class="d-flex flex-column col-md-6 me-2 input-box mb-2">
+                  <input type="text" name="last_name" class="" placeholder="Your Last Name" [(ngModel)]="user.last_name" required>
+                  <small class="text-info" *ngIf="hasError('last_name')">{{ getError('last_name') }}</small>
+                </div>
+                
+                <div class="d-flex flex-column col-md-5 me-2 input-box mb-2">
+                  <input type="text" class="" name="phone" placeholder="Your Phone Number" pattern="[0-9]{10}" [(ngModel)]="user.phone" title="must contain 10 digits" required="">
+                  <small class="text-info" *ngIf="hasError('phone')">{{ getError('phone') }}</small>
+                </div>
+
+                <div class="d-flex flex-column col-md-6 me-2 input-box mb-2">
+                  <input type="email" class="" name="email" placeholder="Example@gmail.com" pattern="^[a-zA-Z0-9]+@gmail\.com$" title="please enter a valid gmail address (eg:username06@gmail.com)" [(ngModel)]="user.email" required="">
+                  <small class="text-info" *ngIf="hasError('email')">{{ getError('email') }}</small>
+                </div>
+
+                <div class="d-flex flex-column col-md-5 me-2 input-box mb-2">
+                  <input type="password" class="" name="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" [(ngModel)]="user.password" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required="">
+                  <small class="text-info" *ngIf="hasError('password')">{{ getError('password') }}</small>
+                </div>
+               
+                 <div class="d-flex flex-column col-md-6 me-2 input-box mb-2">
+                  <input type="text" class="" name="district" placeholder=" Enter Your District" [(ngModel)]="user.district" required>
+                  <small class="text-info" *ngIf="hasError('district')">{{ getError('district') }}</small>
+                </div> 
+
+                <div class="d-flex flex-column col-md-5 me-2 input-box mb-2">
+                  <input type="text" name="address" rows="5" title="Address should be 5-50 characters and can be include letters , numbers,spaces,and common symbols(.,#/-)." placeholder="Address..." [(ngModel)]="user.address" required>
+                  <small class="text-info" *ngIf="hasError('address')">{{ getError('address') }}</small>
+                </div>
+
+                <div class="d-flex flex-column col-md-6 me-2 input-box ">
+                  <input type="text" class="" name="dob" title="Enter in YY-MM-DD format" placeholder="Date Of Birth(YYYY-MM-DD)" [(ngModel)]="user.dob"  required>
+                  <small class="text-info" *ngIf="hasError('dob')">{{ getError('dob') }}</small>
+                </div>
+
+                <div class="d-flex flex-column col-md-6 me-2 input-box ">
+                  <input type="text"  class="" pattern="\d{10,12}" name="id_proof" placeholder="Enter Aadhar no: or Ration card id " title="Enter a valid  number " required [(ngModel)]="user.id_proof">
+                  <small class="text-info" *ngIf="hasError('id_proof')">{{ getError('id_proof') }}</small>
+                </div> 
+
+                <div class="col-md-12 text-center">
+                  <button class="btn btn-success col-md-6 p-2 m-3" type="submit" (click)="submit()">Register</button>
+                </div>
+				
+              </div>
+			        <p class="d-flex justify-content-center gap-2">Already a user? <a class="nav-link text-success" href="login">LOGIN NOW</a></p>
+            </form>
+			
+          </div><!-- End Contact Form -->
+        </div>
+      </div> 
+  </main>
+</section>

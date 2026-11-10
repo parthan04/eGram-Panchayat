@@ -1,0 +1,124 @@
+html {
+    scroll-behavior: smooth;
+}
+.hero{
+    background-color: #034079;
+}
+.hero-left{
+    margin-top: 20px;
+    padding:17% 3%;
+}
+.hero-right{
+    margin-top: 20px;
+}
+h1{
+    color: white;
+    font-size: 200%;
+    font-weight: bold;
+}
+p{
+    color: rgb(180, 177, 177);
+}
+.hero-right{
+    padding: 2%;
+    background-color: white;
+    border-radius: 10px;
+}
+.marquee-container{
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+}
+.marquee-content{
+    display: inline-block;
+    animation: marquee 40s linear infinite;
+}
+.marquee-content:hover{
+    animation-play-state: paused;
+}
+.marquee-item{
+    color: rgb(94, 89, 89);
+}
+@keyframes marquee {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+.about{
+    animation: about 4s ease-in-out;
+}
+@keyframes about {
+  from {
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.about-right{
+  padding:3% 3%;
+}
+.about-right h4{
+    font-weight: bold;
+    font-size: 200%;
+    color: #034079;
+    font-family: 'Montserrat', sans-serif;
+}
+.about-right p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: justify;
+}
+.services{
+    animation: service 8s ease;
+    background-color: #145da0;
+    padding: 2%;
+}
+@keyframes service {
+  from {
+    transform: translateY(60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+ .service-card-container{
+    display: flex;
+    flex-wrap:wrap;
+    gap: 15px;
+    width: 100%;
+    border-radius: 5px;
+ }
+.services-left h4{
+    font-weight: bold;
+    font-size: 120%;
+    color: #034079;
+    font-family: 'Montserrat', sans-serif;
+}
+.services-left p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: justify;
+}
+.service-item{
+    padding: 2%;
+    background-color: white;
+    border-radius: 10px;
+}
+.icons{
+    padding:5px 10px;
+    border-radius: 50%;
+    background-color: #f57813;
+}
+.service-item{
+    width: 30%;
+}

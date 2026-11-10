@@ -1,0 +1,68 @@
+<!-- Contact Section -->
+<section class="contact">
+
+<main>
+
+<!-- Page Title -->
+<div class="page-title text-center pt-3">
+  <div class="container">
+    <h2>Staff Login Page</h2>
+    <nav class="breadcrumbs">
+      <ol>
+        <li><a routerLink="/">Home</a> / login</li>
+        
+      </ol>
+    </nav>
+  </div>
+</div><!-- End Page Title -->
+
+  <div class="container position-relative">
+
+    <div class="row  gy-4">
+
+    <div class=" col-lg-4">
+    
+      </div>
+
+      <div  class="box  shadow-lg p-1 col-lg-3 col-lg-5">
+      
+       <form action="" method="post" class="php-email-form m-5">
+        <div id="post-imgs">
+        <img  class="img-fluid " src="../../assets/images/user.jpg" alt="user" >
+<br/>
+       <h3>LOGIN</h3>
+      </div> 
+        <div class="row gy-2">
+            <div class="input-box col-md-20">
+              <input type="text" name="username" class="" placeholder="Username.." [(ngModel)]="user.username" required>
+               
+            </div>
+
+            <div class="input-box col-md-20 ">
+                <input type="password" id="password" name="password.." placeholder="Password" required="" [(ngModel)]="user.password">
+                
+            </div>
+
+            <div class="d-flex flex-column col-md-9 me-2">
+                    <select name="staff_designation" id="" [(ngModel)]="user.staff_designation"  class="m-2 select-input-box form-control">
+                        <option value="" disabled>Select Staff Designation</option>
+                        <option value="Taxation and Revenue Staff">Taxation and Revenue Staff</option>
+                        <option value="Village Development Officer">Village Development Officer</option>
+                        <option value="Attender">Attender</option>
+                   </select>
+            </div>
+
+            <div class="col col-md-16 m-2">
+              <button class="btn input-box  btn-success" name="submit" (click)="submit()" type="submit">Login</button>
+            </div>   
+            
+             </div>
+        </form>
+      </div><!-- End Contact Form -->
+
+    </div>
+
+  </div>
+</main>
+</section><!-- /Contact Section -->
+

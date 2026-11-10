@@ -1,0 +1,435 @@
+<section class="services" id="service">
+    <div class="" style="margin-right:2%;">
+
+        <div class="text-center m-4 d-flex justify-content-between align-items-center">
+            <div class="col-md-4"></div>
+            <div>
+                <h3 class="text-primary fw-bold">Track Your Application</h3>
+                <p class="text-light fw-bold"><a routerLink="/" class="text-secondary text-decoration-none">Home /</a> <span class="text-secondary">My Application</span></p>
+                <hr class="border-2 w-50 border-dark m-auto">
+            </div>
+
+            <div class="d-flex">
+
+                <div class="input-group">
+                    <span class="input-group-text">Search</span>
+                    <input type="text" class="form-control" placeholder="Search....." [(ngModel)]="searchText" (input)="onSearch()" aria-label="Search">
+                    <button class="btn btn-outline-secondary" type="button" (click)="clearSearch()">Clear</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="services-container">
+            <div class="m-4 service-card-container d-flex flex-wrap table-wrap">
+
+                <div *ngIf="loading" class="text-center" colspan="6">
+                    Loading Applications
+                </div>
+
+                <!-- BIRTH CERTIFICATE -->
+                <table class="table table-striped table-bordered table-responsive app-table">
+                    <colgroup *ngFor="let b of birthC">
+                        <col style="width: 50px">
+                        <col style="width: 140px">
+                        <col style="width: 80px">
+                        <col style="width: 120px">
+                        <col style="width: 200px">
+                        <col style="width: 120px">
+                        <col style="width: 130px">
+                        <col style="width: 130px">
+                        <col style="width: 150px">
+                        <col style="width: 160px" *ngIf="b.status=='Completed' ">
+                        <col style="width: 100px">
+                        <col style="width: 120px">
+                    </colgroup>
+
+                    <thead>
+                        <div style="width: 200px;" class="mt-3">
+                            <h5 class="text-primary fw-bold mb-2">Birth Certificates</h5>
+                        </div>
+                        <tr class="text-center" *ngFor="let b of birthC">
+                            <th>ID</th>
+                            <th>Child Name</th>
+                            <th>Gender</th>
+                            <th>Phone No.</th>
+                            <th>Email Id</th>
+                            <th>Date of Birth</th>
+                            <th>Place of Birth</th>
+                            <th>Father's Name</th>
+                            <th>Mother's Name</th>
+                            <th *ngIf="b.status=='Completed'">Certificate View</th>
+                            <th>Status</th>
+                            <th>Applied On</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows" *ngIf="birthC.length > 0 && !loading">
+                        <tr *ngFor="let b of birthC" class="text-center">
+                            <td class="nowrap">{{ b.id }}</td>
+                            <td class="wrap">{{ b.fname }} {{ b.lname }}</td>
+                            <td class="nowrap">{{ b.gender }}</td>
+                            <td class="nowrap">{{ b.phone }}</td>
+                            <td class="wrap">{{ b.email }}</td>
+                            <td class="nowrap">{{ b.b_date }}</td>
+                            <td class="wrap">{{ b.b_place }}</td>
+                            <td class="wrap">{{ b.father_name }}</td>
+                            <td class="wrap">{{ b.mother_name }}</td>
+                            <td class="wrap" style="cursor: pointer;" *ngIf="b.status === 'Completed' ">
+                              <a class="text-decoration-none" (click)="birthCView(b.id)">
+                                View
+                              </a>
+                            </td>
+                            <td class="nowrap" *ngIf="b.status === 'Accepted'" class="text-success">{{ b.status }}</td>
+                            <td class="nowrap" *ngIf="b.status === 'Pending'" class="text-warning">{{ b.status }}</td>
+                            <td class="nowrap" *ngIf="b.status === 'Rejected'" class="text-danger">{{ b.status }}</td>
+                            <td class="nowrap" *ngIf="b.status === 'In Progress'" class="text-info">{{ b.status }}</td>
+                            <td class="nowrap" *ngIf="b.status === 'Completed'" class="text-success">{{ b.status }}</td>
+                            <td class="nowrap">{{ b.created_at.slice(0, 10) }}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="birthC.length === 0" id="rows">
+                        <tr>
+                            <td class="text-center" colspan="12">No Birth Certificates Found <a class="text-decoration-none" href="birthC">Apply</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3" style="width: 100%;" *ngIf="birthTotalRecord>0">
+                    <div class="d-flex justify-content-center gap-3" style="width: 100%;">
+                        <button class="btn btn-primary" (click)="previousPage()"[disabled]="currentPage===1 || loading">
+                           Previous
+                        </button>
+
+                        <span>
+                            Page {{currentPage}} of {{totalPages}}
+                        </span>
+
+                        <button class="btn btn-primary" (click)="nextPage()"[disabled]="currentPage >= totalPages || loading">
+                            Next
+                        </button>
+                    </div>
+                    <p class="text-center">
+                        Total records:{{birthTotalRecord}}
+                    </p>
+                </div>
+
+                <!-- DEATH CERTIFICATE -->
+               <table class="table table-striped table-bordered table-responsive app-table">
+                    <colgroup *ngFor="let d of deathC">
+                        <col style="width: 50px">
+                        <col style="width: 140px">
+                        <col style="width: 80px">
+                        <col style="width: 120px">
+                        <col style="width: 200px">
+                        <col style="width: 120px">
+                        <col style="width: 130px">
+                        <col style="width: 130px">
+                        <col style="width: 130px" *ngIf="d.status=='Completed' ">
+                        <col style="width: 160px">
+                        <col style="width: 100px">
+                    </colgroup>
+
+                    <thead>
+                        <div style="width: 200px;" class="mt-3">
+                            <h5 class="text-primary fw-bold mb-2">Death Certificates</h5>
+                        </div>
+                        <tr class="text-center" *ngFor="let d of deathC">
+                            <th>ID</th>
+                            <th>Deceased Name</th>
+                            <th>Gender</th>
+                            <th>Phone No.</th>
+                            <th>Email Id</th>
+                            <th>Date of Death</th>
+                            <th>Place of Death</th>
+                            <th>Cause of Death</th>
+                            <th *ngIf="d.status=='Completed' ">Certificate View</th>
+                            <th>Status</th>
+                            <th>Applied On</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows" *ngIf="deathC.length > 0 && !loading">
+                        <tr *ngFor="let d of deathC" class="text-center">
+                            <td class="nowrap">{{ d.id }}</td>
+                            <td class="wrap">{{ d.d_name }} </td>
+                            <td class="nowrap">{{ d.gender }}</td>
+                            <td class="nowrap">{{ d.phone }}</td>
+                            <td class="wrap">{{ d.email }}</td>
+                            <td class="nowrap">{{ d.d_date }}</td>
+                            <td class="wrap">{{ d.d_place }}</td>
+                            <td class="wrap">{{ d.cause_d }}</td>
+                            <td class="wrap" style="cursor: pointer;" *ngIf="d.status === 'Completed' "><a class="text-decoration-none" (click)="deathCView(d.id)">View</a></td>
+                            <td class="nowrap" *ngIf="d.status === 'Accepted'" class="text-success">{{ d.status }}</td>
+                            <td class="nowrap" *ngIf="d.status === 'Pending'" class="text-warning">{{ d.status }}</td>
+                            <td class="nowrap" *ngIf="d.status === 'Rejected'" class="text-danger">{{ d.status }}</td>
+                            <td class="nowrap" *ngIf="d.status === 'In Progress'" class="text-info">{{ d.status }}</td>
+                            <td class="nowrap" *ngIf="d.status === 'Completed'" class="text-success">{{ d.status }}</td>
+                            <td class="nowrap">{{ d.created_at.slice(0, 10) }}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="deathC.length === 0" id="rows">
+                        <tr>
+                            <td class="text-center" colspan="11">No Death Certificates Found <a class="text-decoration-none" href="deathC">Apply</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3" style="width: 100%;" *ngIf="deathTotalRecord>0">
+                    <div class="d-flex justify-content-center gap-3" style="width: 100%;">
+                        <button class="btn btn-primary" (click)="previousPage()"[disabled]="currentPage===1 || loading">
+                           Previous
+                        </button>
+
+                        <span>
+                            Page {{currentPage}} of {{totalPages}}
+                        </span>
+
+                        <button class="btn btn-primary" (click)="nextPage()"[disabled]="currentPage >= totalPages || loading">
+                            Next
+                        </button>
+                    </div>
+                    <p class="text-center">
+                        Total records:{{deathTotalRecord}}
+                    </p>
+                </div>
+
+                <!-- MARRIAGE CERTIFICATE -->
+                <table class="table table-striped table-bordered table-responsive app-table">
+                    <colgroup *ngFor="let m of marriageC">
+                        <col style="width: 50px">
+                        <col style="width: 140px">
+                        <col style="width: 100px">
+                        <col style="width: 120px">
+                        <col style="width: 150px">
+                        <col style="width: 150px">
+                        <col style="width: 130px">
+                        <col style="width: 130px"*ngIf="m.status=='Completed' ">
+                        <col style="width: 130px">
+                        <col style="width: 160px">
+                    </colgroup>
+
+                    <thead>
+                        <div style="width: 250px;" class="mt-3">
+                            <h5 class="text-primary fw-bold mb-2">Marriage Certificates</h5>
+                        </div>
+                        <tr class="text-center" *ngFor="let m of marriageC">
+                            <th>ID</th>
+                            <th>Groom Name</th>
+                            <th>Bride Name</th>
+                            <th>Phone No.</th>
+                            <th>Email Id</th>
+                            <th>Date of Marriage</th>
+                            <th>Place of Marriage</th>
+                            <th *ngIf="m.status=='Completed' ">Certificate View</th>
+                            <th>Status</th>
+                            <th>Applied On</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows" *ngIf="marriageC.length > 0 && !loading">
+                        <tr *ngFor="let m of marriageC" class="text-center">
+                            <td class="nowrap">{{ m.id }}</td>
+                            <td class="wrap">{{ m.h_name }}</td>
+                            <td class="nowrap">{{ m.w_name }}</td>
+                            <td class="nowrap">{{ m.phone }}</td>
+                            <td class="wrap">{{ m.email }}</td>
+                            <td class="nowrap">{{ m.date_of_marriage }}</td>
+                            <td class="wrap">{{ m.place_of_marriage }}</td>
+                            <td class="wrap" style="cursor: pointer;" *ngIf="m.status === 'Completed' "><a class="text-decoration-none" (click)="marriageCView(m.id)">View</a></td>
+                            <td class="nowrap" *ngIf="m.status === 'Accepted'" class="text-success">{{ m.status }}</td>
+                            <td class="nowrap" *ngIf="m.status === 'Pending'" class="text-warning">{{ m.status }}</td>
+                            <td class="nowrap" *ngIf="m.status === 'Rejected'" class="text-danger">{{ m.status }}</td>
+                            <td class="nowrap" *ngIf="m.status === 'In Progress'" class="text-info">{{ m.status }}</td>
+                            <td class="nowrap" *ngIf="m.status === 'Completed'" class="text-success">{{ m.status }}</td>
+                            <td class="nowrap">{{ m.created_at.slice(0, 10) }}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="marriageC.length === 0" id="rows">
+                        <tr>
+                            <td class="text-center" colspan="10">No Marriage Certificates Found <a class="text-decoration-none" href="marriageC">Apply</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3" style="width: 100%;" *ngIf="marriageTotalRecord>0">
+                    <div class="d-flex justify-content-center gap-3" style="width: 100%;">
+                        <button class="btn btn-primary" (click)="previousPage()"[disabled]="currentPage===1 || loading">
+                           Previous
+                        </button>
+
+                        <span>
+                            Page {{currentPage}} of {{totalPages}}
+                        </span>
+
+                        <button class="btn btn-primary" (click)="nextPage()"[disabled]="currentPage >= totalPages || loading">
+                            Next
+                        </button>
+                    </div>
+                    <p class="text-center">
+                        Total records:{{marriageTotalRecord}}
+                    </p>
+                </div>
+
+                <!-- INCOME CERTIFICATE -->
+                <table class="table table-striped table-bordered table-responsive app-table">
+                    <colgroup *ngFor="let i of incomeC">
+                        <col style="width: 50px">
+                        <col style="width: 140px">
+                        <col style="width: 80px">
+                        <col style="width: 120px">
+                        <col style="width: 200px">
+                        <col style="width: 120px">
+                        <col style="width: 130px">
+                        <col style="width: 130px">
+                        <col style="width: 130px">
+                        <col style="width: 160px" *ngIf="i.status === 'Completed' ">
+                        <col style="width: 100px">
+                        <col style="width: 120px">
+                    </colgroup>
+
+                    <thead>
+                        <div style="width: 200px;" class="mt-3">
+                            <h5 class="text-primary fw-bold mb-2">Income Certificates</h5>
+                        </div>
+                        <tr class="text-center" *ngFor="let i of incomeC">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Phone No.</th>
+                            <th>Email Id</th>
+                            <th>Date of Birth</th>
+                            <th>Parent Name</th>
+                            <th>Ration Card No.</th>
+                            <th>Income</th>
+                            <th *ngIf="i.status === 'Completed' ">Certificate View</th>
+                            <th>Status</th>
+                            <th>Applied On</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows" *ngIf="incomeC.length > 0 && !loading">
+                        <tr *ngFor="let i of incomeC" class="text-center">
+                            <td class="nowrap">{{ i.id }}</td>
+                            <td class="wrap">{{ i.citizen }}</td>
+                            <td class="nowrap">{{ i.gender }}</td>
+                            <td class="nowrap">{{ i.phone }}</td>
+                            <td class="wrap">{{ i.email }}</td>
+                            <td class="nowrap">{{ i.dob }}</td>
+                            <td class="wrap">{{ i.parent_name }}</td>
+                            <td class="wrap">{{ i.ration_card_no }}</td>
+                            <td class="wrap">{{ i.income }}</td>
+                            <td class="wrap" style="cursor: pointer;" *ngIf="i.status === 'Completed' "><a class="text-decoration-none" (click)="incomeCView(i.id)">View</a></td>
+                            <td class="nowrap" *ngIf="i.status === 'Accepted'" class="text-success">{{ i.status }}</td>
+                            <td class="nowrap" *ngIf="i.status === 'Pending'" class="text-warning">{{ i.status }}</td>
+                            <td class="nowrap" *ngIf="i.status === 'Rejected'" class="text-danger">{{ i.status }}</td>
+                            <td class="nowrap" *ngIf="i.status === 'In Progress'" class="text-info">{{ i.status }}</td>
+                            <td class="nowrap" *ngIf="i.status === 'Completed'" class="text-success">{{ i.status }}</td>
+                            <td class="nowrap">{{ i.created_at.slice(0, 10) }}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="incomeC.length === 0" id="rows">
+                        <tr>
+                            <td class="text-center" colspan="12">No Income Certificates Found <a class="text-decoration-none" href="incomeC">Apply</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3" style="width: 100%;" *ngIf="incomeTotalRecord>0">
+                    <div class="d-flex justify-content-center gap-3" style="width: 100%;">
+                        <button class="btn btn-primary" (click)="previousPage()"[disabled]="currentPage===1 || loading">
+                           Previous
+                        </button>
+
+                        <span>
+                            Page {{currentPage}} of {{totalPages}}
+                        </span>
+
+                        <button class="btn btn-primary" (click)="nextPage()"[disabled]="currentPage >= totalPages || loading">
+                            Next
+                        </button>
+                    </div>
+                    <p class="text-center">
+                        Total records:{{incomeTotalRecord}}
+                    </p>
+                </div>
+
+                <!-- CASTE CERTIFICATE -->
+                <table class="table table-striped table-bordered table-responsive app-table">
+                    <colgroup *ngFor="let c of casteC">
+                        <col style="width: 50px">
+                        <col style="width: 140px">
+                        <col style="width: 80px">
+                        <col style="width: 120px">
+                        <col style="width: 200px">
+                        <col style="width: 120px">
+                        <col style="width: 130px">
+                        <col style="width: 130px">
+                        <col style="width: 130px">
+                        <col style="width: 160px">
+                        <col style="width: 150px" *ngIf="c.status=='Completed' ">
+                        <col style="width: 120px">
+                        <col style="width: 120px">
+                    </colgroup>
+
+                    <thead>
+                        <div style="width: 200px;" class="mt-3">
+                            <h5 class="text-primary fw-bold mb-2">Caste Certificates</h5>
+                        </div>
+                        <tr class="text-center" *ngFor="let c of casteC">
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Gender</th>
+                            <th>Phone No.</th>
+                            <th>Email Id</th>
+                            <th>Date of Birth</th>
+                            <th>Caste</th>
+                            <th>Religion</th>
+                            <th>Parent Name</th>
+                            <th>Ration Card No.</th>
+                            <th *ngIf="c.status=='Completed' ">Certificate View</th>
+                            <th>Status</th>
+                            <th>Applied On</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows" *ngIf="casteC.length > 0 && !loading">
+                        <tr *ngFor="let c of casteC" class="text-center">
+                            <td class="nowrap">{{ c.id }}</td>
+                            <td class="wrap">{{ c.citizen }}</td>
+                            <td class="nowrap">{{ c.gender }}</td>
+                            <td class="nowrap">{{ c.phone }}</td>
+                            <td class="wrap">{{ c.email }}</td>
+                            <td class="nowrap">{{ c.dob }}</td>
+                            <td class="wrap">{{ c.caste }}</td>
+                            <td class="wrap">{{ c.religion }}</td>
+                            <td class="wrap">{{ c.parent_name }}</td>
+                            <td class="wrap">{{ c.ration_card_no }}</td>
+                            <td class="wrap" style="cursor: pointer;" *ngIf="c.status === 'Completed' "><a class="text-decoration-none" (click)="casteCView(c.id)">View</a></td>
+                            <td class="nowrap" *ngIf="c.status === 'Accepted'" class="text-success">{{ c.status }}</td>
+                            <td class="nowrap" *ngIf="c.status === 'Pending'" class="text-warning">{{ c.status }}</td>
+                            <td class="nowrap" *ngIf="c.status === 'Rejected'" class="text-danger">{{ c.status }}</td>
+                            <td class="nowrap" *ngIf="c.status === 'In Progress'" class="text-info">{{ c.status }}</td>
+                            <td class="nowrap" *ngIf="c.status === 'Completed'" class="text-success">{{ c.status }}</td>
+                            <td class="nowrap">{{ c.created_at.slice(0, 10) }}</td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="casteC.length === 0" id="rows">
+                        <tr>
+                            <td class="text-center" colspan="13">No Caste Certificates Found <a class="text-decoration-none" href="casteC">Apply</a> </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3" style="width: 100%;" *ngIf="casteTotalRecord>0">
+                    <div class="d-flex justify-content-center gap-3" style="width: 100%;">
+                        <button class="btn btn-primary" (click)="previousPage()"[disabled]="currentPage===1 || loading">
+                           Previous
+                        </button>
+
+                        <span>
+                            Page {{currentPage}} of {{totalPages}}
+                        </span>
+
+                        <button class="btn btn-primary" (click)="nextPage()"[disabled]="currentPage >= totalPages || loading">
+                            Next
+                        </button>
+                    </div>
+                    <p class="text-center">
+                        Total records:{{casteTotalRecord}}
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>

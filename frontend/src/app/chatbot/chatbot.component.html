@@ -1,0 +1,91 @@
+
+<!-- Floating chat button -->
+<button
+  class="chat-launcher"
+  *ngIf="!isOpen"
+  (click)="toggleChat()"
+  aria-label="Open Panchayat chatbot" title="Ai chat Bot">
+  <span class="launcher-icon">
+    <i class="bi bi-stars"></i>
+  </span>
+  <!-- <span class="launcher-label">Ask Panchayat</span> -->
+</button>
+
+<!-- Chat window -->
+<section class="chat-window" *ngIf="isOpen">
+
+  <header class="chat-header">
+    <div class="bot-avatar">GP</div>
+
+    <div class="header-info">
+      <h3>E-Gram Panchayat</h3>
+      <p><span class="online-dot"></span> AI Citizen Assistant</p>
+    </div>
+
+    <button
+      class="close-button"
+      (click)="toggleChat()"
+      aria-label="Close chatbot">
+      <i  class="bi bi-x-lg"></i>
+    </button>
+  </header>
+
+  <div class="chat-body">
+    <div class="welcome-note">
+      Ask me about certificates, application status,
+      professional tax, and available services.
+    </div>
+
+    <div
+      *ngFor="let message of messages"
+      class="message-row"
+      [class.user-row]="message.role === 'user'">
+
+      <div
+        class="message-bubble"
+        [class.user-bubble]="message.role === 'user'"
+        [class.bot-bubble]="message.role === 'bot'">
+        {{ message.text }}
+      </div>
+    </div>
+
+    <div class="message-row" *ngIf="isLoading">
+      <div class="message-bubble bot-bubble typing">
+        Thinking<span>...</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="quick-questions" *ngIf="messages.length === 1">
+    <button (click)="question = 'How can I apply for a birth certificate?'; sendMessage()">
+      Birth certificate
+    </button>
+    <button (click)="question = 'How do I check my application status?'; sendMessage()">
+      Application status
+    </button>
+  </div>
+
+  <form class="chat-input-area" (ngSubmit)="sendMessage()">
+    <input
+      type="text"
+      name="question"
+      [(ngModel)]="question"
+      placeholder="Type your question..."
+      autocomplete="off"
+      [disabled]="isLoading"
+      aria-label="Type your question">
+
+    <button
+      type="submit"
+      class="send-button"
+      [disabled]="isLoading || !question.trim()"
+      aria-label="Send message">
+      <i class="bi bi-send-fill"></i>
+    </button>
+  </form>
+
+  <footer class="chat-footer">
+    AI-generated answers may need verification with Panchayat officials.
+  </footer>
+
+</section>

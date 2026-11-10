@@ -1,0 +1,81 @@
+<main class="main">
+
+    <div class="page-title m-3" data-aos="fade"  >
+      <div class="container">
+        <h2 class="text-primary fw-bold text-center"> Application Form</h2>
+        <hr class="border-1 w-50 border-dark m-auto">
+      </div>
+    </div>
+
+    <section id="contact" class="contact section ">
+        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4">
+            
+                <div class=" col-lg-3">
+                </div>
+                
+                <div class="card shadow-lg col-lg-6 p-1">
+                
+                
+                    <form class=" p-5 "  method="post" enctype="multipart/form-data" >
+                        <div class="row gy-4">
+                                <h4 class="text-center fw-bold text-secondary">Apply For Death Certificate</h4>
+                            <div class="">
+
+                            <h5>Deceased's Information:</h5>
+                            <input type="hidden" class=" m-2 form-control"  [value]="user.username" [(ngModel)]="user.username" name="citizen" readonly required/>
+                            <small class="text-info" *ngIf="hasError('username')">{{ getError('username') }}</small>
+                            
+                            <input type="text" class="m-2 form-control" placeholder="Deceased Name.." [(ngModel)]="application.d_name" name="d_name" required/>
+                            <small class="text-info" *ngIf="hasError('d_name')">{{ getError('d_name') }}</small>
+                            
+                            <input type="text" class="m-2 form-control" placeholder="Place of Death.." [(ngModel)]="application.d_place" name="d_place" required/>
+                            <small class="text-info" *ngIf="hasError('d_place')">{{ getError('d_place') }}</small>
+                            
+                            <input type="date" class="m-2 form-control" title="Date of Death.." [(ngModel)]="application.d_date" name="d_date" required/>
+                            <small class="text-info" *ngIf="hasError('d_date')">{{ getError('d_date') }}</small>
+                                
+                            <input type="time" class=" m-2 form-control " [(ngModel)]="application.d_time" title="Time of Death" name="d_time" required=""/>
+                            <small class="text-info" *ngIf="hasError('d_time')">{{ getError('d_time') }}</small>
+
+                            <input type="text" class=" m-2 form-control " [(ngModel)]="application.phone" placeholder="Phone Number" name="phone" pattern="^[0-9]{10}$" required=""/>
+                            <small class="text-info" *ngIf="hasError('phone')">{{ getError('phone') }}</small>
+
+                            <input type="email" class=" m-2 form-control " [(ngModel)]="application.email" placeholder="Informant Email" name="email" pattern="^[a-zA-Z0-9]+@gmail\.com$" required=""/>
+                            <small class="text-info" *ngIf="hasError('email')">{{ getError('email') }}</small>
+                            
+                            <input type="text" class=" m-2 form-control " [(ngModel)]="application.cause_d" placeholder="Cause of Death" name="cause_d" required=""/>
+                            <small class="text-info" *ngIf="hasError('cause_d')">{{ getError('cause_d') }}</small>
+                             
+                            <select name="gender" id="" [(ngModel)]="application.gender"  class=" m-2 form-control ">
+                                <option value="" disabled>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            <small class="text-info" *ngIf="hasError('gender')">{{ getError('gender') }}</small>
+                            
+                            </div>
+
+                            <div class="">
+                                <h5> Document upload:</h5>
+                                <label>Attach Document (Medical Certificate):</label>
+                                <input type="file" class=" m-2 form-control " (change)="onFile($event)" name="d_proof" required="">
+                                <small class="text-info" *ngIf="hasError('d_proof')">{{ getError('d_proof') }}</small>
+                            </div>
+                        
+                            <div class="text-center">
+                            
+                                <button class="btn btn-outline-info" type="submit" (click)="submit()">APPLY</button>
+                            <a href="/" class="btn btn-outline-info m-3">  Back <i class="bi bi-arrow-left-circle"></i> </a>
+                    
+                            </div>
+
+                        </div>
+                    </form>
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>

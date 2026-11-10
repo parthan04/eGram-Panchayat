@@ -1,0 +1,72 @@
+<div class="text-end m-3">
+  <button class="btn btn-primary" (click)="downloadPDF()">
+    <i class="bi bi-download"></i> Download PDF
+  </button>
+</div>
+
+<div class="certificate-container mt-3" id="marriageCertificate">
+
+  <div class="certificate-header">
+    Marriage Certificate
+  </div>
+
+  <div class="certificate-body">
+
+    <p>
+      This certifies that the marriage details mentioned below are recorded in the official register.
+    </p>
+
+    <h5>Marriage Information</h5>
+
+    <table class="info-table">
+      <tr>
+        <td><strong>Marriage Registration Number:</strong></td>
+        <td>{{ certificate.marriage_reg_no }}</td>
+      </tr>
+      <tr>
+        <td><strong>Date of Marriage:</strong></td>
+        <td>{{ certificate.date_of_marriage | date:'MMMM dd, yyyy' }}</td>
+      </tr>
+      <tr>
+        <td><strong>Place of Marriage:</strong></td>
+        <td>{{ certificate.place_of_marriage }}</td>
+      </tr>
+      <tr>
+        <td><strong>Address:</strong></td>
+        <td>{{ certificate.address }}</td>
+      </tr>
+    </table>
+
+    <h5>Husband Information</h5>
+
+    <table class="info-table">
+      <tr>
+        <td><strong>Husband's Name:</strong></td>
+        <td>{{ certificate.h_name }}</td>
+      </tr>
+    </table>
+
+    <h5>Wife Information</h5>
+
+    <table class="info-table">
+      <tr>
+        <td><strong>Wife's Name:</strong></td>
+        <td>{{ certificate.w_name }}</td>
+      </tr>
+    </table>
+
+    <h5>Contact Information</h5>
+
+    <table class="info-table">
+      <tr>
+        <td><strong>Phone:</strong></td>
+        <td>{{ certificate.phone }}</td>
+      </tr>
+      <tr>
+        <td><strong>Email:</strong></td>
+        <td>{{ certificate.email }}</td>
+      </tr>
+    </table>
+
+  </div>
+</div>

@@ -1,0 +1,94 @@
+.contact{
+    height:700px;
+    background-color: #1e4a76;
+}
+
+.page-title{
+    margin-left: 4%;
+    /* margin-top: 10px; */
+
+}
+.container h2{
+    color: #f9f7f7;
+}
+
+
+.breadcrumbs ol{
+list-style: none;
+}
+.breadcrumbs ol a{
+    text-decoration: none;
+    text-decoration-color: rgb(3, 9, 9);
+}
+.breadcrumbs ol li{
+    color: #f7f4f4;
+}
+div.box{
+
+    background-color:#1e4a76;
+   color:#f8f5f5;
+   border-radius: 12px;
+}
+
+.box .input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+}
+.input-box input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+   
+   border-radius: 40px;
+   font-size: 16px;
+   color: #eeebeb;
+   padding: 10px;
+
+}
+.input-box input::placeholder{
+    color: #f5f2f2;
+}
+.input-box button{
+    position: absolute;
+    right: 10px;
+    top: 20%;
+    color: #eeebeb;
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+.input-box i{
+    position: absolute;
+    right: 20px;
+    top: 20%;
+    cursor: pointer;
+    background: none;
+    transform: translate(-20%);
+    font-size: 25px;
+}
+#post-imgs img {
+    width: 100px;
+    margin-left: 150px;
+  border-radius: 50px;
+}
+.box h3{
+
+    margin-left: 160px;
+    color:rgb(251, 247, 247);
+
+}
+div.row{
+    margin: 0;
+}
+.col a{
+    text-decoration: none;
+}
+ .col button .btn{
+    margin-top: 10px;
+} 
+.input-box select{
+    color:#f5f1f1;
+    background-color: #1e4a76;
+}

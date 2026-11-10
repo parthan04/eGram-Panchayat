@@ -1,0 +1,44 @@
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  .app-table {
+    width: 100%;
+    min-width: 1480px;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  .app-table th,
+  .app-table td {
+    border: 1px solid #e5e5e5;
+    padding: 8px 10px;
+    text-align: center;
+    vertical-align: middle;
+  }
+
+  .nowrap { white-space: nowrap; }
+
+  .wrap { overflow-wrap: break-word; }
+
+  .app-table tbody tr:nth-child(odd) { background: #f2f2f2; }
+
+.adm-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+.adm-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 24px;
+  width: 92%;
+  max-width: 420px;
+  max-height: 90vh;
+  overflow-y: auto;
+}

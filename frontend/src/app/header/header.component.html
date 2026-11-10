@@ -1,0 +1,85 @@
+    <header>
+        <div class="d-flex justify-content-between p-3">
+            <div class="">
+                <div class="d-flex align-items-center"style="gap: 25px;">
+                    <a href="/"><img class="img" src="../assets/images/logo.png" width="67" alt="img"></a>
+                    <div>
+                        <div style="color:#e1d4d4ff" *ngIf="isLoggedin">Welcome back <b>{{user.username}}</b></div>
+                        <div *ngIf="isAdmin" class="text-white"><b>Administrator</b></div>
+                        <div *ngIf="isStaff" class="text-white"><b>{{user.staff_designation}}</b></div>
+                    </div>
+                </div>
+            </div>
+            <nav class="">
+                <ul class="nav nav-pills gap-1">
+                    <li class="nav-item"><a class="nav-link" routerLink="/" [routerLinkActiveOptions]="{exact:true}" routerLinkActive="active">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+
+                    <!-- CITIZENS -->
+
+                    <li class="nav-item"><a class="nav-link" routerLink="services" *ngIf="isLoggedin && !isAdmin && !isStaff" routerLinkActive="active">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="application" *ngIf="isLoggedin && !isAdmin && !isStaff"routerLinkActive="active">My Application</a></li>
+                    <li class="nav-item" *ngIf="isLoggedin && !isAdmin && !isStaff">
+                        <div class="dropdown">
+                            <button class="btn text-white dropdown-toggle" data-bs-toggle="dropdown"> 
+                                e-Certificates
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-secondary" routerLink="birthC">Birth Certificate</a></li>
+                                <li><a class="dropdown-item text-secondary" routerLink="deathC">Death Certificate</a></li>
+                                <li><a class="dropdown-item text-secondary" routerLink="marriageC">Marriage Certificate</a></li>
+                                <li><a class="dropdown-item text-secondary" routerLink="incomeC">Income Certificate</a></li>
+                                <li><a class="dropdown-item text-secondary" routerLink="casteC">Caste Certificate</a></li>
+                                <li><a class="dropdown-item text-secondary" routerLink="view-certificate">View Certificates</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="nav-item" *ngIf="isLoggedin && !isAdmin && !isStaff">
+                        <div class="dropdown">
+                            <button class="btn text-white dropdown-toggle" data-bs-toggle="dropdown"> 
+                                e-Payments
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-secondary" routerLink="taxes">Pay Tax</a></li>
+                                <li><a class="dropdown-item text-secondary" routerLink="my-payments">View Receipts</a></li>
+                            </ul>
+                        </div>
+                    </li>
+
+                   <!-- ADMIN AND STAFF-->
+
+                    <li class="nav-item"><a class="nav-link" routerLink="certificate_management" *ngIf="isAdmin" routerLinkActive="active">  Certificate Management </a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="payment_management" *ngIf="isAdmin || user.staff_designation=='Taxation and Revenue Staff' " routerLinkActive="active">  Payment Management </a></li>
+                    <li class="nav-item"><a class="nav-link" routerLink="news_management" *ngIf="isAdmin" routerLinkActive="active">  News Management </a></li>
+                    <li class="nav-item" *ngIf="isAdmin || user.staff_designation=='Village Development Officer'">
+                        <div class="dropdown">
+                            <a class="btn text-white dropdown-toggle" data-bs-toggle="dropdown"> 
+                                Services Management
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item text-secondary" routerLink="service_management">View Services</a></li>
+                                <li><a class="dropdown-item text-secondary" routerLink="view_application">View Services Application</a></li>
+                            </ul>
+                        </div>
+                    </li>  
+                    <li class="nav-item" *ngIf="isAdmin">
+                        <a class="nav-link" routerLink="user_management" *ngIf="isAdmin" routerLinkActive="active">User Management</a>
+                    </li>                     
+
+                    <li class="nav-item" *ngIf="!isLoggedin">
+                        <a class="btn btn-outline-light" href="login">
+                            Login
+                        </a>
+                    </li>
+
+                    <li class="nav-item" *ngIf="isLoggedin">
+                        <button class="btn btn-outline-light" (click)="logout()">
+                            Logout
+                        </button>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+    </header>

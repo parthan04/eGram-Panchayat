@@ -1,0 +1,141 @@
+<section class="services" id="service">
+
+    <div class="modal" id="addTaxModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Tax</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="services-container">
+                        <div class="card service-card-container d-flex flex-wrap">
+
+                            <form class=" p-5 "  method="post">
+                                <div class="row gy-4">
+                                    <div class="text-center">
+                                        
+                                        <input type="text" class="m-2 form-control" placeholder="Tax Name" [(ngModel)]="tax.tax_name" name="tax_name" required/>
+                                        <textarea type="text" class=" m-2 form-control " placeholder="Description" [(ngModel)]="tax.description" name="description" required=""></textarea>
+                                        
+                                        <button type="button" class="btn btn-outline-info" type="submit" (click)="submit()">Submit</button>  
+                                        <!-- <div class="d-flex gap-2" *ngIf="isEdit">
+                                            <button type="button" class="btn btn-outline-info" (click)="update()">Update</button>
+                                            <button type="button" class="btn btn-outline-info" (click)="clear()">Clear</button>   
+                                        </div>                -->
+                                    </div>
+                                </div>
+                            </form>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center gap-3">
+            <div class="col-md-1"></div>
+            <div class="text-center m-4">
+                <h3 class="text-primary fw-bold">Payment Applications</h3>
+                <p class="text-light fw-bold"><a routerLink="/" class="text-secondary text-decoration-none">Home /</a> <span class="text-secondary">Payment Applications</span></p>
+                <hr class="border-2 w-50 border-dark m-auto">
+            </div>
+            <div class="m-4 d-flex gap-3">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaxModal" >Create New Tax</button>
+                <a class="btn btn-primary" href="view_tax" >View Taxes</a>
+            </div>
+        </div>
+
+        <div class="services-container">
+            <div class="m-4 service-card-container d-flex flex-wrap">
+
+                <div *ngIf="loading" class="text-center" colspan="6">
+                    Loading Applications
+                </div>
+
+                <table class="table table-striped table-bordered table-responsive">
+                    <thead>
+                        <tr class="text-center">
+                            <th>ID</th>
+                            <th>Tax Name</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>Remarks</th>
+                            <th>Applied On</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="my_payments.length > 0 && !loading">
+                        <tr *ngFor="let p of my_payments" class="text-center">
+                            <td>{{ p.id }}</td>
+                            <td>{{ p.tax_name }}</td>
+                            <td>{{ p.amount }}</td>
+                            <td *ngIf="p.status === 'Paid'" class="text-success">{{ p.status }}</td>
+                            <td *ngIf="p.status === 'Pending'" class="text-warning">{{ p.status }}</td>
+                            <td *ngIf="p.status === 'Failed'" class="text-danger">{{ p.status }}</td>
+                            <td *ngIf="p.status === 'Completed'" class="text-success">{{ p.status }}</td>
+                            <td *ngIf="p.status === 'Approved'" class="text-success">{{ p.status }}</td>
+                            <td *ngIf="p.status === 'Rejected'" class="text-danger">{{ p.status }}</td>
+                            <td>{{ p.remarks }}</td>
+                            <td>{{ p.created_at.slice(0, 10) }}</td>
+                            <td class="nowrap">
+                                <button class="btn btn-sm btn-outline-success" (click)="openEdit(p)">Update Status</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tbody *ngIf="my_payments.length === 0">
+                        <tr>
+                            <td class="text-center" colspan="7">No Payments Found</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="d-flex flex-column justify-content-center align-items-center gap-3 mt-3" style="width: 100%;" *ngIf="totalRecord>0">
+                    <div class="d-flex justify-content-center gap-3" style="width: 100%;">
+                        <button class="btn btn-primary" (click)="previousPage()"[disabled]="currentPage===1 || loading">
+                           Previous
+                        </button>
+
+                        <span>
+                            Page {{currentPage}} of {{totalPages}}
+                        </span>
+
+                        <button class="btn btn-primary" (click)="nextPage()"[disabled]="currentPage >= totalPages || loading">
+                            Next
+                        </button>
+                    </div>
+                    <p class="text-center">
+                        Total records:{{totalRecord}}
+                    </p>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- EDIT STATUS / REMARKS -->
+    <div class="adm-overlay" *ngIf="editOpen" (click)="editOpen = false">
+        <div class="adm-box" (click)="$event.stopPropagation()">
+            <h5 class="fw-bold text-primary">Update Application #{{ editRow?.id }}</h5>
+
+            <label class="form-label mt-2">Status</label>
+            <select class="form-select" [(ngModel)]="editForm.status" name="estatus">
+            <option *ngFor="let st of statuses" [value]="st">{{ st }}</option>
+            </select>
+
+            <label class="form-label mt-3">Message / Remark</label>
+            <textarea class="form-control" rows="3" [(ngModel)]="editForm.remarks" name="remarks"></textarea>
+
+            <p class="text-danger mt-2" *ngIf="editError">{{ editError }}</p>
+
+            <div class="text-end mt-3">
+            <button class="btn btn-outline-secondary me-2" (click)="editOpen = false">Cancel</button>
+            <button class="btn btn-primary" (click)="saveEdit()">Save</button>
+            </div>
+        </div>
+    </div>
+
+</section>

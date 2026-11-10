@@ -1,0 +1,38 @@
+.certificate-container {
+            border: 2px solid #333;
+            padding: 40px;
+            width: 70%;
+            margin: auto;
+            background: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            font-family: Arial, sans-serif;
+        }
+        .certificate-header {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: #333;
+        }
+        .certificate-body {
+            margin-top: 30px;
+            line-height: 1.8;
+        }
+        .certificate-body h5 {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .info-table {
+            width: 100%;
+            margin-top: 20px;
+        }
+        .info-table td {
+            padding: 8px;
+            border: 1px solid #ccc;
+        }
+
+        @media print {
+          .certificate-container {
+            border: 2px solid #333;
+          }
+        }

@@ -1,0 +1,58 @@
+<section class="contact">
+
+<main>
+
+<div class="page-title text-center pt-3">
+  <div class="container">
+    <h2>Admin Login Page</h2>
+    <nav class="breadcrumbs">
+      <ol>
+        <li><a routerLink="/">Home</a> / login</li>
+        
+      </ol>
+    </nav>
+  </div>
+</div>
+
+  <div class="container position-relative">
+
+    <div class="row  gy-4">
+
+    <div class=" col-lg-4">
+    
+      </div>
+
+      <div  class="box  shadow-lg p-1 col-lg-3 col-lg-5">
+      
+       <form (ngSubmit)="login()" class="php-email-form m-5">
+        <div id="post-imgs">
+        <img  class="img-fluid " src="../../assets/images/user.jpg" alt="user" >
+<br/>
+       <h3>LOGIN</h3>
+      </div> 
+        <div class="row gy-2">
+            <div class="input-box col-md-20">
+              <input type="text" name="username" class="" placeholder="Username.." [(ngModel)]="user.username" required>
+               
+            </div>
+
+            <div class="input-box col-md-20 ">
+                <input type="password" id="password" name="password.." placeholder="Password" required="" [(ngModel)]="user.password">
+                
+            </div>
+
+            <div class="col col-md-16 m-2">
+              <p class="text-danger" *ngIf="error">{{ error }}</p>
+              <button class="btn input-box  btn-success" name="submit" (click)="login()" type="submit">Login</button>
+            </div>   
+            
+             </div>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</main>
+</section>
+

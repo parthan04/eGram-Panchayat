@@ -1,0 +1,15 @@
+<div class="container py-4">
+  <h4 class="text-primary fw-bold mb-3">View Taxes</h4>
+
+  <div class="row">
+    <div class="col-md-3 mb-3" *ngFor="let t of taxes">
+      <div class="card h-100 p-3">
+        <img src="../../assets/images/pay.jpg" width="260" alt="">
+        <h5 class="fw-bold text-secondary text-center">{{ t.tax_name }}</h5>
+        <p class="text-center">{{ t.description }}</p>
+      </div>
+    </div>
+  </div>
+
+   <p *ngIf="taxes.length === 0" class="text-center">No taxes available</p>
+</div>

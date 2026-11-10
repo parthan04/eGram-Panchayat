@@ -1,0 +1,32 @@
+ .service-card-container{
+    display: flex;
+    flex-wrap:wrap;
+    gap: 15px;
+    width: 100%;
+    border-radius: 5px;
+ }
+.services-left h4{
+    font-weight: bold;
+    font-size: 120%;
+    color: #034079;
+    font-family: 'Montserrat', sans-serif;
+}
+.services-left p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    line-height: 1.5;
+    text-align: justify;
+}
+.service-item{
+    padding: 2%;
+    background-color: white;
+    border-radius: 10px;
+}
+.icons{
+    padding:5px 10px;
+    border-radius: 50%;
+    background-color: #f57813;
+}
+.service-item{
+    width: 30%;
+}

@@ -1,0 +1,32 @@
+<div class="text-end m-3">
+  <button class="btn btn-primary" (click)="downloadPDF()">
+    <i class="bi bi-download"></i> Download PDF
+  </button>
+</div>
+
+<div class="certificate-container mt-3" id="deathCertificate">
+
+        <div class="certificate-header">
+            Death Certificate
+        </div>
+
+        <div class="certificate-body">
+            <p>This certifies that the following information is recorded in the official register:</p>
+
+            <h5>Deceased's Information</h5>
+            <table class="info-table">
+                <tr><td><strong>Name:</strong></td><td>{{certificate.d_name}}</td></tr>
+                <tr><td><strong>Date of Death:</strong></td><td>{{certificate.d_date}}</td></tr>
+                <tr><td><strong>Place of Death:</strong></td><td>{{certificate.d_place}}</td></tr>
+                <tr><td><strong>Gender:</strong></td><td>{{certificate.gender}}</td></tr>
+                <tr><td><strong>Time of Death:</strong></td><td>{{certificate.d_time}}</td></tr>
+            </table>
+
+            <h5>Other Information</h5>
+            <table class="info-table">
+                <tr><td><strong>Phone:</strong></td><td>{{certificate.phone}}</td></tr>
+                <tr><td><strong>Email:</strong></td><td>{{certificate.email}}</td></tr>
+            </table>
+
+        </div>
+    </div>

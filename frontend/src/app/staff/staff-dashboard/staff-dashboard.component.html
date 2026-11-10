@@ -1,0 +1,36 @@
+    <div class="d-flex justify-content-between">
+
+        <!-- SIDEBAR -->
+        <div class="col-2 bg-primary position-fixed top-0 start-0 vh-100">
+            <div class="p-4" style="border-bottom: 1px solid rgb(233, 220, 220);">
+               <h5 class="text-white">Admin Dashboard</h5>
+            </div>
+            <nav style="display: flex; flex-direction:column; position:fixed; height:50vh;" class="p-4">
+                <ul class="text-white container-fluid navbar-nav" style="height:120%; justify-content:space-between;">
+                    <li class="nav-item"><a class="nav-link bg-white text-primary p-3 rounded" href="">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link bg-white text-primary p-3 rounded" href="">Payment History</a></li>
+                    <li class="nav-item"><a class="nav-link bg-white text-primary p-3 rounded" href="">Policy Application</a></li>
+                    <li class="nav-item"><a class="nav-link bg-white text-primary p-3 rounded" href="">Claim Application</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <!-- DASHBOARD -->
+        <div class="col-10 offset-2">
+
+            <!-- HERO SECTION -->
+            <div class="container-fluid d-flex align-items-center justify-content-between p-4" id="hero">
+               <div>
+                    <h4 class="text-primary"><b>Staff Dashboard</b></h4>
+                    <p class="text-secondary">A simple web application for managing eGram Panchayat Services.</p>
+               </div>
+               <div>
+                <button (click)="logout()" class="btn btn-outline-danger">
+                    Logout
+                </button>
+               </div>
+            </div>
+
+           
+
+    </div>

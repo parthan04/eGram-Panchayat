@@ -1,0 +1,77 @@
+<!-- SERVICES SECTION -->
+
+<section class="services" id="service">
+
+    <div class="modal" id="addServiceModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add Service</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="services-container">
+                        <div class="card service-card-container d-flex flex-wrap">
+
+                            <form class=" p-5 "  method="post">
+                                <div class="row gy-4">
+                                    <div class="text-center">
+                                        
+                                        <input type="text" class="m-2 form-control" placeholder="Title" [(ngModel)]="service.title" name="title" required/>
+                                        <textarea type="text" class=" m-2 form-control " placeholder="Description" [(ngModel)]="service.description" name="description" required=""></textarea>
+                                        
+                                        <button type="button" *ngIf="!isEdit" class="btn btn-outline-info" type="submit" (click)="Submit()">Submit</button>  
+                                        <div class="d-flex gap-2" *ngIf="isEdit">
+                                            <button type="button" class="btn btn-outline-info" (click)="update()">Update</button>
+                                            <button type="button" class="btn btn-outline-info" (click)="clear()">Clear</button>   
+                                        </div>               
+                                    </div>
+                                </div>
+                            </form>
+                                
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center gap-3">
+            <div class="col-md-1"></div>
+            <div class="text-center m-4">
+                <h3 class="text-primary fw-bold">Services</h3>
+                <p class="text-light fw-bold"><a routerLink="/" class="text-secondary text-decoration-none">Home /</a> <span class="text-secondary">Services</span></p>
+                <hr class="border-2 w-50 border-dark m-auto">
+            </div>
+            <div class="m-4">
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addServiceModal" >Add Service</button>
+            </div>
+        </div>
+        <div class="services-container">
+            <div class="services-left">
+                <h4 class="fw-bold text-secondary">Services We Offer</h4>
+                <p class="text-muted">E-Gram Panchayat Services is a digital platform designed to make local government services more accessible, convenient, and efficient for citizens. The system provides a centralized online platform where citizens can access various Gram Panchayat services without having to visit the Panchayat office for every requirement.</p>
+            </div>
+            <div class="m-4 service-card-container d-flex flex-wrap">
+
+                <div class="card service-item d-flex" *ngFor="let sA of services">
+                    <div class="icon flex-shrink-0 p-2 d-flex gap-3 align-items-center border-bottom">
+                        <div class="d-flex justify-content-center align-items-center rounded-circle p-2 bg-primary text-white fs-5" style="width: 50px; height: 50px;"> <i class="bi bi-award"></i> </div>
+                        <h4 class="fw-bold text-secondary">{{ sA.title }}</h4>
+                    </div>
+                    <div>
+                        <p>{{ sA.description }}</p>
+                        and so on...
+                    </div>
+                    <div class="d-flex gap-2 mt-3">
+                        <button class="btn btn-primary" type="button" (click)="delete(sA.id)" style="background-color: red;">Delete</button>
+                        <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#addServiceModal" (click)="edit(sA)" style="background-color: green;">Update</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,38 @@
+<div class="text-end m-3">
+  <button class="btn btn-primary" (click)="downloadPDF()">
+    <i class="bi bi-download"></i> Download PDF
+  </button>
+</div>
+
+<div class="certificate-container mt-3" id="birthCertificate">
+
+        <div class="certificate-header">
+            Birth Certificate
+        </div>
+
+        <div class="certificate-body">
+            <p>This certifies that the following information is recorded in the official register:</p>
+
+            <h5>Child Information</h5>
+            <table class="info-table">
+                <tr><td><strong>Child Name:</strong></td><td>{{certificate.fname}}  {{certificate.lname}}</td></tr>
+                <tr><td><strong>Date of Birth:</strong></td><td>{{certificate.dob}}</td></tr>
+                <tr><td><strong>Place of Birth:</strong></td><td>{{certificate.b_place}}</td></tr>
+                <tr><td><strong>Gender:</strong></td><td>{{certificate.gender}}</td></tr>
+                <tr><td><strong>Time of Birth:</strong></td><td>{{certificate.b_time}}</td></tr>
+                <tr><td><strong>Weight at Birth:</strong></td><td>{{certificate.b_weight}}</td></tr>
+            </table>
+
+            <h5>Parent Information</h5>
+            <table class="info-table">
+                <tr><td><strong>Father's Name:</strong></td><td>{{certificate.father_name}}</td></tr>
+                <tr><td><strong>Mother's Name:</strong></td><td>{{certificate.mother_name}}</td></tr>
+            </table>
+
+            <h5>Contact Information</h5>
+            <table class="info-table">
+                <tr><td><strong>Phone:</strong></td><td>{{certificate.phone}}</td></tr>
+            </table>
+
+        </div>
+    </div>

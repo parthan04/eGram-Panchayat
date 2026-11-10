@@ -1,0 +1,90 @@
+<main class="main">
+
+    <div class="page-title m-3" data-aos="fade"  >
+      <div class="container">
+        <h2 class="text-primary fw-bold text-center"> Application Form</h2>
+        <hr class="border-1 w-50 border-dark m-auto">
+      </div>
+    </div>
+
+    <section id="contact" class="contact section ">
+        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+            <div class="row gy-4">
+            
+                <div class=" col-lg-3">
+                </div>
+                
+                <div class="card shadow-lg col-lg-6 p-1">
+                
+                
+                    <form class=" p-5 "  method="post" enctype="multipart/form-data" >
+                        <div class="row gy-4">
+                                <h4 class="text-center fw-bold text-secondary">Apply For Caste Certificate</h4>
+                            <div class="">
+
+                            <h5>Applicant Details:</h5>
+                            <input type="text" class=" m-2 form-control"  [value]="user.username" [(ngModel)]="user.username" name="citizen" readonly required/>
+                            <small class="text-info" *ngIf="hasError('username')">{{ getError('username') }}</small>
+
+                            <input type="text" class=" m-2 form-control"  [value]="user.last_name" name="last_name" readonly required/>
+                            <small class="text-info" *ngIf="hasError('last_name')">{{ getError('last_name') }}</small>
+                            
+                            <input type="text" class="m-2 form-control" placeholder="Caste.." [(ngModel)]="application.caste" name="caste" required/>
+                            <small class="text-info" *ngIf="hasError('caste')">{{ getError('caste') }}</small>
+                            
+                            <input type="text" class="m-2 form-control" placeholder="Father Name.." [(ngModel)]="application.parent_name" name="parent_name" required/>
+                            <small class="text-info" *ngIf="hasError('parent_name')">{{ getError('parent_name') }}</small>
+                            
+                            <input type="date" class="m-2 form-control" title="Date of Birth Child.." [(ngModel)]="application.dob" name="dob" required/>
+                            <small class="text-info" *ngIf="hasError('dob')">{{ getError('dob') }}</small>
+                                
+                            <input type="email" class=" m-2 form-control " [(ngModel)]="application.email" placeholder="Email Id..." name="email" pattern="^[a-zA-Z0-9]+@gmail\.com$" required=""/>
+                            <small class="text-info" *ngIf="hasError('email')">{{ getError('email') }}</small>
+
+                            <input type="text" class=" m-2 form-control " [(ngModel)]="application.phone" placeholder="Phone Number" pattern="^[0-9]{10}$" name="phone" required=""/>
+                            <small class="text-info" *ngIf="hasError('phone')">{{ getError('phone') }}</small>
+
+                            <input type="text" class=" m-2 form-control " [(ngModel)]="application.address" placeholder="Address" name="address" required=""/>
+                            <small class="text-info" *ngIf="hasError('address')">{{ getError('address') }}</small>
+                            
+                            <input type="text" class=" m-2 form-control " [(ngModel)]="application.religion" placeholder="Religion" name="religion" required=""/>
+                            <small class="text-info" *ngIf="hasError('religion')">{{ getError('religion') }}</small>
+                            
+                            <input type="text" class=" m-2 form-control " [(ngModel)]="application.ration_card_no" placeholder="Valid Ration Card Number" pattern="^[0-9]{10}$" name="ration_card_no" required=""/>
+                            <small class="text-info" *ngIf="hasError('ration_card_no')">{{ getError('ration_card_no') }}</small>
+                            
+                            <select name="gender" id="" [(ngModel)]="application.gender"  class=" m-2 form-control ">
+                                <option value="" disabled>Select Gender</option>
+                                <option value="male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                            
+                            </div>
+
+                            <div class="">
+                            <h5> Document upload:</h5>
+                                <label>Attach Document (ID Proof):</label>
+                                <input type="file" class=" m-2 form-control " (change)="onFile($event)" name="id_proof" required="">
+                                <small class="text-info" *ngIf="hasError('id_proof')">{{ getError('id_proof') }}</small>
+
+                                <label>Attach Document (sslc Certificate):</label>
+                                <input type="file" class=" m-2 form-control " (change)="onFile2($event)" name="sslc_certificate" required="">
+                                <small class="text-info" *ngIf="hasError('sslc_certificate')">{{ getError('sslc_certificate') }}</small>
+                            </div>
+                        
+                            <div class="text-center">
+                            
+                                <button class="btn btn-outline-info" type="submit" (click)="submit()">APPLY</button>
+                            <a href="/" class="btn btn-outline-info m-3">  Back <i class="bi bi-arrow-left-circle"></i> </a>
+                    
+                            </div>
+
+                        </div>
+                    </form>
+                    
+                </div>
+
+            </div>
+        </div>
+    </section>
+</main>

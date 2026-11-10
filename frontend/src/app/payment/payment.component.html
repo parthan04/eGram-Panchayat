@@ -1,0 +1,18 @@
+<div class="container py-4" *ngIf="tax" style="padding: 27%;">
+  <h4 class="text-primary fw-bold mb-3">Make Payment</h4>
+
+  <div class="card p-4" style="max-width: 500px;">
+    <h5 class="fw-bold text-secondary">{{ tax.tax_name }}</h5>
+    <p>{{ tax.description }}</p>
+
+    <label class="form-label">Amount (₹)</label>
+    <input type="number" min="1" class="form-control mb-3"
+           placeholder="Enter amount" [(ngModel)]="amount" name="amount">
+
+    <button type="button" class="btn btn-primary w-100" (click)="pay()">Pay now</button>
+
+    <button type="button" class="btn btn-outline-secondary mt-3" (click)="back()">
+      <i class="bi bi-arrow-left-circle"></i> Back
+    </button>
+  </div>
+</div>

@@ -1,0 +1,6 @@
+<app-header *ngIf="!isAuthPage()"></app-header>
+<main>
+    <router-outlet></router-outlet>
+    <app-chatbot *ngIf="!isAuthPage()"></app-chatbot>
+</main>
+<app-footer *ngIf="!isAuthPage()"></app-footer>

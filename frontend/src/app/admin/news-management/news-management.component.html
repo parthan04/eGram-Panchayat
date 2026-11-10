@@ -1,0 +1,30 @@
+<!-- SERVICES SECTION -->
+
+<section class="services" id="service">
+    <div class="container">
+        <div class="text-center m-4">
+            <h3 class="text-primary fw-bold">Upload Upcoming News</h3>
+            <p class="text-light fw-bold"><a routerLink="/" class="text-secondary text-decoration-none">Home /</a> <span class="text-secondary">Upcoming News</span></p>
+            <hr class="border-2 w-50 border-dark m-auto">
+        </div>
+        <div class="services-container">
+            <div class="m-4 card service-card-container d-flex flex-wrap">
+
+                <form class=" p-5 "  method="post">
+                    <div class="row gy-4">
+                        <div class="text-center">
+
+                            <input type="text" class="m-2 form-control" placeholder="Title" [(ngModel)]="news.title" name="title" required/>
+                            <textarea type="text" class=" m-2 form-control " placeholder="Description" [(ngModel)]="news.description" name="description" required=""></textarea>
+                            <input type="date" class=" m-2 form-control " title="Published On" [(ngModel)]="news.published_on" [min]="today" name="published_on" required=""/>
+                            <input type="date" class=" m-2 form-control " title="Expired On" [(ngModel)]="news.expired_on" [min]="news.published_on || today" name="expired_on" required=""/>
+
+                            <button class="btn btn-outline-info" type="submit" (click)="submit()">Submit</button>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>

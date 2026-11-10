@@ -1,0 +1,100 @@
+<!-- HERO SECTION -->
+
+<section class="hero">
+    <div class="container">
+        <div class="hero-container d-flex justify-content-between">
+            <div class="hero-left col-lg-6">
+                <h1>Welcome to e-Gram Panchayat</h1>
+                <p>Your one-stop destination for all e-governance services in the Gram Panchayat.</p>
+            </div>
+            <div class="hero-right mb-4">
+                <img src="../../assets/images/hero.png" width="510" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- END HERO SECTION -->
+
+<!-- NEWS SECTION -->
+
+<div class="marquee-container">
+    <div class="marquee-content">
+        <span class="marquee-item">
+          <span class="text-secondary" *ngIf="news.length > 0"><b>Latest News:</b> </span><span *ngFor="let n of news" class="text-danger"><b>{{n.published_on | date}}</b> - {{n.title}} - {{n.description}} Last Date: <b>{{n.expired_on | date}}</b>  |   </span>
+          <span class="text-secondary" *ngIf="news.length == 0">No News Available</span>
+        </span>
+    </div>
+</div>
+
+<!-- END NEWS SECTION -->
+
+<!-- ABOUT SECTION -->
+
+<section class="about m-5 card p-4" id="about">
+    <div class="container">
+        <div class="about-container d-flex align-items-center justify-content-between">
+            <div class="about-left">
+                <img src="../../assets/images/about.jpg" width="510" alt="">
+            </div>
+            <div class="about-right">
+                <h4 class="text-primary fw-bold">About Us</h4>
+                <p class="text-secondary">e-Gram Panchayat is a web-based portal that provides e-governance services to the citizens of the Gram Panchayat. It is a one-stop destination for all e-governance services in the Gram Panchayat.</p>
+                <p>
+                    E-Gram Panchayat Services is a digital platform designed to make local government services more accessible, convenient, and efficient for citizens. The system provides a centralized online platform where citizens can access various Gram Panchayat services without having to visit the Panchayat office for every requirement.
+
+                    The platform allows citizens to register and log in securely, apply for different certificates, make tax and service payments, track application status, and receive important updates regarding their requests. Services such as Birth Certificate, Death Certificate, Marriage Certificate, Income Certificate, and Caste Certificate can be managed through the online system.
+
+                    E-Gram Panchayat also provides an administrative interface for Panchayat officials to manage citizen applications, verify submitted information and documents, process service requests, manage payments, and update application statuses.
+
+                    The main objective of the project is to reduce manual paperwork, minimize unnecessary visits to government offices, improve transparency, and provide faster access to Panchayat services. By bringing essential local government services into a single digital platform, E-Gram Panchayat aims to create a more convenient and citizen-friendly experience.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- END ABOUT SECTION -->
+
+<!-- SERVICES SECTION -->
+
+<section class="services" id="service">
+    <div class="container">
+        <div class="mb-4">
+            <h2 class="text-light fw-bold">Services</h2>
+            <hr class="border-2 w-50 border-light">
+        </div>
+        <div class="services-container">
+            <div class="services-left">
+                <h4 class="fw-bold text-light">Services We Offer</h4>
+                <p class="text-light">E-Gram Panchayat Services is a digital platform designed to make local government services more accessible, convenient, and efficient for citizens. The system provides a centralized online platform where citizens can access various Gram Panchayat services without having to visit the Panchayat office for every requirement.</p>
+            </div>
+            <div class="m-4 service-card-container">
+
+                <!-- Service Cards -->
+                <div class="card service-item d-flex" *ngFor="let sG of services">
+                    <div class="icon flex-shrink-0 p-2 d-flex gap-3 align-items-center border-bottom">
+                        <img [src]="sG.icon" alt="">
+                        <h4 class="fw-bold text-secondary">{{ sG.title }}</h4>
+                    </div>
+                    <div>
+                        <p>{{ sG.description }}</p>
+
+                        and so on... <a class="btn btn-primary text-white d-flex justify-content-center align-items-center" href="" *ngIf="isLoggedin && !isAdmin"><span>Apply now</span><i class="bi bi-arrow-right"></i></a>
+
+                        <a class="btn btn-primary text-white d-flex justify-content-center align-items-center" href="login" *ngIf="!isLoggedin"><span>Know more</span><i class="bi bi-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end mt-3">
+                    <a routerLink="services" class="btn text-white align-items-center d-flex gap-1" *ngIf="isLoggedin && !isAdmin"><span></span>View All Services<i class="bi bi-arrow-right"></i></a>
+                    <a routerLink="service_management" class="btn text-white align-items-center d-flex gap-1" *ngIf="isAdmin"><span></span>View All Services<i class="bi bi-arrow-right"></i></a>
+                    <a href="login" class="btn text-white align-items-center d-flex gap-1" *ngIf="!isLoggedin"><span></span>View All Services<i class="bi bi-arrow-right"></i></a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- END SERVICES SECTION -->
